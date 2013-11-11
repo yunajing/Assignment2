@@ -46,6 +46,16 @@
     <link rel="stylesheet" href="styles/styles.css" type="text/css" media="screen">
 </head>
 <body>
-
+<h3>Video Upload:</h3>
+Select a file to upload: <br />
+<form action="UploadFileServlet" method="post"
+                        enctype="multipart/form-data">
+<input type="file" name="file" size="50" />
+<br />
+<input type="submit" value="Upload File" />
+</form>
+<br/>
+<br/>
+<br/>
 </body>
 </html>

@@ -14,7 +14,7 @@ public class RateFileServlet extends HttpServlet{
 		super();
 	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		rds = new RDSmanager();
 		
 		String rateFileName = request.getParameter("rateVideoName").replaceAll("_", " ");//modification

@@ -120,7 +120,7 @@ public class RDSmanager {
 		}
 	}
 	
-	public boolean deletVideo(String Vname){
+	public boolean deleteVideo(String Vname){
 		try{
 			if (connection!=null){
 				String query = "Delete from VIDEOINFO where vname='"+Vname+"'";

@@ -38,7 +38,7 @@ public class UploadFileServlet extends HttpServlet{
 		
 		if(isMultipart){
 			AWSCredentials credentials = new PropertiesCredentials(
-		   			 CreateS3Bucket.class.getResourceAsStream("AwsCredentials.properties"));
+		   			 UploadFileServlet.class.getResourceAsStream("AwsCredentials.properties"));
 			
 		    AmazonS3Client s3 = new AmazonS3Client(credentials);
 		    
@@ -95,8 +95,7 @@ public class UploadFileServlet extends HttpServlet{
                             + ex.getMessage());
 		    	
 		    }
-		    getServletContext().getRequestDispatcher("/index.jsp").forward(
-                    request, response);
+		    getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 		}
 	}
 }

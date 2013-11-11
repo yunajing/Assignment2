@@ -53,13 +53,13 @@
 		
 		jwplayer('myplayer').setup({
 		 
-		                file: "https://s3.amazonaws.com/ra2616.cloud2.bucket/HowToUseRDS.mp4",	
+		                file: "https://s3.amazonaws.com/assignment2-video/cat02.mp4",	
 		                image: "images/LOGO.png",
 		                height:300,		
 		                width:450,		
 		                allowfullscreen: true,		
 		                title: "Video!!!!!!!",		
-		               modes: [{type: "flash", src:"https://s3.amazonaws.com/ronan.jwplayer/jwplayer/jwplayer.swf"},	 
+		               modes: [{type: "flash", src:"/jwplayer/jwplayer.swf"},	 
 		                 {type: "html5", config:{file:"http://dj87f1qgzp8sd.cloudfront.net/HowToUseRDS.mp4",title: "Welcome",provider:"video"}} ], 	
 		              
 		                provider: "rtmp",		
@@ -94,6 +94,7 @@ Select a file to upload: <br />
 							for(int i1 =0; i1 < videos.size(); i1++)
 							{
 								String url =p + bucket_name+"/"+ videos.get(i1).replace(" ","+");
+								System.out.println(url);
 			%>
 
 			<tr>

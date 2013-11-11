@@ -1,3 +1,4 @@
+//import String;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -25,6 +26,7 @@ public class RDSmanager {
 			password = "jingfeng2";
 			hostname = "aa1bn93m9zk08nc.cyamhzmhppdf.us-east-1.rds.amazonaws.com";
 			port = "3306";
+			Class.forName("com.mysql.jdbc.Driver");
 			jdbcUrl = "jdbc:mysql://" + hostname + ":" + port + "/" + dbName + "?user=" + userName + "&password=" + password;
 			connection = DriverManager.getConnection(jdbcUrl);
 		}
@@ -55,6 +57,33 @@ public class RDSmanager {
 					+ e.getMessage());
 			e.printStackTrace();
 			return 1;
+		}
+
+	}
+	
+	public LinkedList<String> getVideo() {
+		try {
+			
+			String queryToSelectInOrder = "select DISTINCT vName from VIDEORATING order by rating desc";
+			if (connection != null) {
+				PreparedStatement preparedStatement = connection.prepareStatement(queryToSelectInOrder);
+				ResultSet resultVideoSet = preparedStatement.executeQuery();
+				LinkedList<String> videos = new LinkedList<String>();
+
+				while (resultVideoSet.next()) {
+					videos.add(resultVideoSet.getString(1));
+					
+
+				}
+
+				return videos;
+			}
+			return null;
+		} catch (SQLException e) {
+			System.out.println("ERROR!!!!!! "
+					+ e.getMessage());
+			e.printStackTrace();
+			return null;
 		}
 
 	}

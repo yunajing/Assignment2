@@ -45,8 +45,7 @@ public class RDSmanager {
 				ResultSet result = preparedStatement.executeQuery();
 
 				while (result.next()) {
-					rating = result.getInt(1);
-					System.out.println(rating);
+					rating = result.getFloat(1);
 				}
 			}
 			return rating;
@@ -64,7 +63,6 @@ public class RDSmanager {
 			String query = "select * from VIDEOINFO";
 			int videoNum = 0;
 			if (connection!=null){
-				//System.out.println("connection established");
 				PreparedStatement preparedStatement = connection.prepareStatement(query);
 				ResultSet result = preparedStatement.executeQuery();
 
@@ -88,27 +86,54 @@ public class RDSmanager {
 		}
 	}
 	
-	public int[] rateVideo(String Vname,int rating){
+	public boolean rateVideo(String Vname,int rating){
 		try{
-			int[] result = new int[2];
+			int count = 0;
+			float currentRating = 0;
 			String query = "select * from VIDEOINFO where Vname='"+Vname+"'";
 			if (connection!=null){
 				PreparedStatement preparedStatement = connection.prepareStatement(query);
 				ResultSet resultset = preparedStatement.executeQuery();
 
 				if (resultset.next()) {
-					result[0] = resultset.getInt(3);
-					result[1] = resultset.getInt(4);
+					count = resultset.getInt(3);
+					currentRating = resultset.getFloat(4);
 				}
+				float sum = currentRating * count + rating;
+				float newRating = sum/(count+1);
+				query = "update VIDEOINFO SET rating ="
+						+ newRating
+						+ ", count="
+						+ count
+						+ " where vName='" + Vname + "'";
+				PreparedStatement preparedStatement1 = connection.prepareStatement(query);
+				preparedStatement1.executeUpdate();
+				return true;
 			}
-			return result;
+			return false;
 		}
 		catch (SQLException e) {
-			System.out.println("Error occurs when Rating Video " + Vname
+			System.out.println("Error occurs when Rating Video " + Vname + "\n Detailed Information:"
 					+ e.getMessage());
 			e.printStackTrace();
-			return null;
+			return false;
+		}
+	}
+	
+	public boolean deletVideo(String Vname){
+		try{
+			if (connection!=null){
+				String query = "Delete from VIDEOINFO where vname='"+Vname+"'";
+				PreparedStatement preparedStatement = connection.prepareStatement(query);
+				preparedStatement.executeUpdate();
+				return true;
+			}
+			return false;
+		}catch (SQLException e) {
+			System.out.println("Error occurs when Deleting Video " + Vname+"\n  Detailed Information:"
+					+ e.getMessage());
+			e.printStackTrace();
+			return false;
 		}
 	}
 }
-

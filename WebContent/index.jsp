@@ -11,7 +11,8 @@
 <%!// Share the client objects across threads to
     // avoid creating new clients for each web request
     private AmazonEC2      ec2;
-    private AmazonS3        s3;%>
+    private AmazonS3        s3;
+    private RDSmanager     rds;%>
 
 <%
     /*
@@ -32,6 +33,7 @@
         AWSCredentialsProvider credentialsProvider = new ClasspathPropertiesFileCredentialsProvider();
         ec2    = new AmazonEC2Client(credentialsProvider);
         s3     = new AmazonS3Client(credentialsProvider);
+        rds = new RDSmanager();
     }
 %>
 
@@ -51,6 +53,32 @@ Select a file to upload: <br />
 <br />
 <input type="submit" value="Upload File" />
 </form>
+
+		<h2>List of the videos</h2>
+		<table >
+			<%
+				String p ="https://s3.amazonaws.com/";
+						
+						String bucket_name = "assignment2-video";
+						LinkedList<String> videos = rds.addVideo();
+						if( videos != null) {
+							for(int i1 =0; i1 < videos.size(); i1++)
+							{
+								String url =p + bucket_name+"/"+ videos.get(i1).replace(" ","+");
+			%>
+
+			<tr>
+
+				<% if(videos.get(i1).contains(".mp4") || videos.get(i1).contains(".flv"))%>
+				<td>
+					<p>
+						<b><font face="Calibri" size="5" ><%=videos.get(i1)  %></font></b></p>
+				</td>
+
+				
+				<% }
+				} %>
+				</table>
 <br/>
 <br/>
 <br/>

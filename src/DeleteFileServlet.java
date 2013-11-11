@@ -29,7 +29,7 @@ public class DeleteFileServlet extends HttpServlet{
 	    String deleteFileName = request.getParameter("videoName").replaceAll("_", " ");//modification
 	    if(deleteFileName != null){
 	    	s3.deleteObject("assignment2-video", deleteFileName);
-	    	rds.deleteVideo(deleteFileName);
+	    	rds.deletVideo(deleteFileName);
 	    }
 	    
 	    getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);

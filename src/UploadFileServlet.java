@@ -19,7 +19,7 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
 
-public class UploadServlet extends HttpServlet{
+public class UploadFileServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
 	private static final String  UPLOAD_DIR = "uploadVideos";
@@ -28,7 +28,7 @@ public class UploadServlet extends HttpServlet{
 	private String uploadFilePath;
 	private static RDSmanager rds;
 	
-	public UploadServlet(){
+	public UploadFileServlet(){
 		super();
 	}
 	
@@ -84,7 +84,7 @@ public class UploadServlet extends HttpServlet{
 		    				System.out.println("SIZE: " +fileItem.getSize());
 		    				System.out.println("TYPE: " +fileItem.getContentType());
 		    				
-		    				//rds.setVideo(fileName, 0);
+		    				rds.addVideo(uploadFileName, 0);
 		    				
 		    			}
 		    			}

@@ -1,0 +1,1 @@
+Insert into VIDEOINFO(vID,vName,rating,count)VALUES(1,'cat01.mp4',5,1)

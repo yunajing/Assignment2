@@ -17,6 +17,7 @@ import com.amazonaws.auth.PropertiesCredentials;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.manager.assignment2.RDSmanager;
 
 
 public class UploadFileServlet extends HttpServlet{
@@ -35,7 +36,7 @@ public class UploadFileServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 		isMultipart = ServletFileUpload.isMultipartContent(request);
 		rds = new RDSmanager();
-		System.out.println(rds.dbName);
+		//System.out.println(rds.dbName);
 		if(isMultipart){
 			AWSCredentials credentials = new PropertiesCredentials(
 		   			 UploadFileServlet.class.getResourceAsStream("AwsCredentials.properties"));

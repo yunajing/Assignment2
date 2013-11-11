@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.PropertiesCredentials;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.manager.assignment2.RDSmanager;
 
 
 public class DeleteFileServlet extends HttpServlet{
@@ -29,7 +30,7 @@ public class DeleteFileServlet extends HttpServlet{
 	    String deleteFileName = request.getParameter("videoName").replaceAll("_", " ");//modification
 	    if(deleteFileName != null){
 	    	s3.deleteObject("assignment2-video", deleteFileName);
-	    	rds.deletVideo(deleteFileName);
+	    	rds.deleteVideo(deleteFileName);
 	    }
 	    
 	    getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);

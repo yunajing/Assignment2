@@ -32,7 +32,7 @@ public class UploadFileServlet extends HttpServlet{
 		super();
 	}
 	
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 		isMultipart = ServletFileUpload.isMultipartContent(request);
 		rds = new RDSmanager();
 		

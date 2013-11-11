@@ -98,7 +98,7 @@ public class RDSmanager {
 
 				if (resultset.next()) {
 					result[0] = resultset.getInt(3);
-					result[1] = resultset.getInt(2);
+					result[1] = resultset.getInt(4);
 				}
 			}
 			return result;

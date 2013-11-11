@@ -1,5 +1,6 @@
 import java.io.IOException;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +18,7 @@ public class DeleteFileServlet extends HttpServlet{
 		super();
 	}
 	
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 		rds = new RDSmanager();
 
 		AWSCredentials credentials = new PropertiesCredentials(

@@ -84,7 +84,7 @@ public class UploadFileServlet extends HttpServlet{
 		    				System.out.println("SIZE: " +fileItem.getSize());
 		    				System.out.println("TYPE: " +fileItem.getContentType());
 		    				
-		    				//rds.setVideo(fileName, 0);
+		    				rds.addVideo(uploadFileName, 0);
 		    				
 		    			}
 		    			}

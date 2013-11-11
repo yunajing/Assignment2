@@ -11,14 +11,13 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-<<<<<<< HEAD
-    <display-name>test</display-name>
-    <servlet-name>test</servlet-name>
-    <servlet-class>test</servlet-class>
+    <display-name>UploadFileServlet</display-name>
+    <servlet-name>UploadFileServlet</servlet-name>
+    <servlet-class>UploadFileServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>test</servlet-name>
-    <url-pattern>/test</url-pattern>
+    <servlet-name>UploadFileServlet</servlet-name>
+    <url-pattern>/UploadFileServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -29,14 +28,15 @@
   <servlet-mapping>
     <servlet-name>DeleteFileServlet</servlet-name>
     <url-pattern>/DeleteFileServlet</url-pattern>
-=======
-    <display-name>UploadFileServlet</display-name>
-    <servlet-name>UploadFileServlet</servlet-name>
-    <servlet-class>UploadFileServlet</servlet-class>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RateFileServlet</display-name>
+    <servlet-name>RateFileServlet</servlet-name>
+    <servlet-class>RateFileServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>UploadFileServlet</servlet-name>
-    <url-pattern>/UploadFileServlet</url-pattern>
->>>>>>> 76d7e3a521457de9b65a2ff8b8a03916823aa2c3
+    <servlet-name>RateFileServlet</servlet-name>
+    <url-pattern>/RateFileServlet</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -1,3 +1,4 @@
+package com.manager.assignment2;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,7 +17,6 @@ public class RDSmanager {
 	Connection connection;
 	public RDSmanager(){
 		init();
-		System.out.println("manager established");
 	}
 	public void init(){
 		try{
@@ -121,7 +121,7 @@ public class RDSmanager {
 		}
 	}
 	
-	public boolean deletVideo(String Vname){
+	public boolean deleteVideo(String Vname){
 		try{
 			if (connection!=null){
 				String query = "Delete from VIDEOINFO where vname='"+Vname+"'";
@@ -138,4 +138,3 @@ public class RDSmanager {
 		}
 	}
 }
-

@@ -8,12 +8,10 @@
 <%@ page import="com.amazonaws.services.dynamodbv2.*" %>
 <%@ page import="com.amazonaws.services.dynamodbv2.model.*" %>
 
-<%! // Share the client objects across threads to
+<%!// Share the client objects across threads to
     // avoid creating new clients for each web request
-    private AmazonEC2         ec2;
-    private AmazonS3           s3;
-    private AmazonDynamoDB dynamo;
- %>
+    private AmazonEC2      ec2;
+    private AmazonS3        s3;%>
 
 <%
     /*
@@ -34,7 +32,6 @@
         AWSCredentialsProvider credentialsProvider = new ClasspathPropertiesFileCredentialsProvider();
         ec2    = new AmazonEC2Client(credentialsProvider);
         s3     = new AmazonS3Client(credentialsProvider);
-        dynamo = new AmazonDynamoDBClient(credentialsProvider);
     }
 %>
 

@@ -35,7 +35,7 @@ public class UploadFileServlet extends HttpServlet{
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 		isMultipart = ServletFileUpload.isMultipartContent(request);
 		rds = new RDSmanager();
-		
+		System.out.println(rds.dbName);
 		if(isMultipart){
 			AWSCredentials credentials = new PropertiesCredentials(
 		   			 UploadFileServlet.class.getResourceAsStream("AwsCredentials.properties"));
@@ -84,7 +84,7 @@ public class UploadFileServlet extends HttpServlet{
 		    				System.out.println("SIZE: " +fileItem.getSize());
 		    				System.out.println("TYPE: " +fileItem.getContentType());
 		    				
-		    				rds.addVideo(uploadFileName, 0);
+		    				if (rds.addVideo(uploadFileName, 0)) System.out.println("Update table successfull");
 		    				
 		    			}
 		    			}

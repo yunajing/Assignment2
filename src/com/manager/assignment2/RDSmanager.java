@@ -20,10 +20,10 @@ public class RDSmanager {
 	}
 	public void init(){
 		try{
-			dbName = "ebdb";
+			dbName = "assignment2";
 			userName = "jingfeng";
 			password = "jingfeng2";
-			hostname = "aa1bn93m9zk08nc.cyamhzmhppdf.us-east-1.rds.amazonaws.com";
+			hostname = "edb.cyamhzmhppdf.us-east-1.rds.amazonaws.com";
 			port = "3306";
 			Class.forName("com.mysql.jdbc.Driver");
 			jdbcUrl = "jdbc:mysql://" + hostname + ":" + port + "/" + dbName + "?user=" + userName + "&password=" + password;

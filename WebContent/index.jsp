@@ -42,40 +42,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <title>My Youtube</title>
-    <link rel="stylesheet" href="styles/styles.css" type="text/css" media="screen">
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<title>MyTube</title>
+<link rel="stylesheet" href="styles/styles.css" type="text/css"
+	media="screen">
+<script type="text/javascript"
+	src="https://s3.amazonaws.com/assignment2-jwplayer/jwplayer/jwplayer.js">
+	</script>
+<script type="text/javascript">jwplayer.key="IFhVDTGUAS2rMT6B2r9dmwEzCZv17bBbXti9RA==";</script>
 </head>
 <body>
 <div id="myplayer">Loading the player ...</div>
 
-		<script type="text/javascript">		
-		
+		<script type="text/javascript">
 		jwplayer('myplayer').setup({
 		 
-		                file: "https://s3.amazonaws.com/assignment2-video/cat02.mp4",	
-		                image: "images/LOGO.png",
+		                file: "rtmp://s3fzodeyzk00fl.cloudfront.net/cfx/st/test.mp4",
+		                title: "run!!",
 		                height:300,		
 		                width:450,		
-		                allowfullscreen: true,		
-		                title: "Video!!!!!!!",		
-		               modes: [{type: "flash", src:"/jwplayer/jwplayer.swf"},	 
-		                 {type: "html5", config:{file:"http://dj87f1qgzp8sd.cloudfront.net/HowToUseRDS.mp4",title: "Welcome",provider:"video"}} ], 	
+		                allowfullscreen: true,			
+		               modes: [{type: "flash", src:"https://s3.amazonaws.com/assignment2-jwplayer/jwplayer/jwplayer.flash.swf"},	 
+		                 {type: "html5", config:{file:"http://dyiqwq9e0df2f.cloudfront.net/test.mp4",title: "Welcome",provider:"video"}} ], 	
 		              
 		                provider: "rtmp",		
-		                streamer: "rtmp://s2fzoi0fa4g1dm.cloudfront.net/cfx/st",
-		                listbar : {
-		                	position: 'bottom',
-		                	size:85
-		                },
-		            	autostart: true
+		                streamer: "rtmp://s3fzodeyzk00fl.cloudfront.net/cfx/st",
+		            	autostart: false
 		                           }); 
-		
-		
-
 		</script>
-<h2><span style="background-color:#FCDC3B; color:#EE0000">${requestScope.message}</span></h2>
-
 <h3>Video Upload:</h3>
 Select a file to upload: <br />
 <form action="UploadFileServlet" method="post"
@@ -88,15 +82,15 @@ Select a file to upload: <br />
 		<h2>List of the videos</h2>
 		<table >
 			<%
-				String p ="https://s3.amazonaws.com/";
+				String p ="rtmp://s3fzodeyzk00fl.cloudfront.net/cfx/st/";
 						
 						String bucket_name = "assignment2-video";
 						LinkedList<String> videos = rds.getVideo();
 						if( videos != null) {
 							for(int i1 =0; i1 < videos.size(); i1++)
 							{
-								String url =p + bucket_name+"/"+ videos.get(i1).replace(" ","+");
-								System.out.println(url);
+								String url =p+videos.get(i1).replace(" ","+");
+								System.out.println("required video is "+url);
 			%>
 
 			<tr>
@@ -107,7 +101,7 @@ Select a file to upload: <br />
 						<b><font face="Calibri" size="5" ><%=videos.get(i1)  %></font></b></p>
 				</td>
 				<td>
-				<img style="border:0px;" src="http://cdn.pastemagazine.com/www/articles/play-button-red-300x300.png" height="42" width="42" onclick="jwplayer('myplayer').load({file: '<%=url %>', image:'images/LOGO.png', title:'<%= videos.get(i1) %>'});jwplayer('myplayer').play();" alt="Play" /></td>
+				<button onclick="jwplayer().play()" height="42" width="42"> <img style="border:0px;" src="http://cdn.pastemagazine.com/www/articles/play-button-red-300x300.png" height="42" width="42" alt="Play" /></button></td>
 
 				<td><form action="DeleteFileServlet" method="post"
 						enctype="multipart/">

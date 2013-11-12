@@ -89,14 +89,14 @@ public class RDSmanager {
 	
 	public boolean addVideo(String Vname, int rating){
 		try{
-			String query = "select * from VIDEOINFO";
+			String query = "select vID from VIDEOINFO";
 			int videoNum = 0;
 			if (connection!=null){
 				PreparedStatement preparedStatement = connection.prepareStatement(query);
 				ResultSet result = preparedStatement.executeQuery();
 
 				while (result.next()) {
-					videoNum++;
+					videoNum = result.getInt(1);
 				}
 				videoNum++;
 				query = "Insert into VIDEOINFO(vID,vName,rating,count)VALUES("+videoNum+",'"+Vname + "',"+rating +",0);";

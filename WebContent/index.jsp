@@ -50,26 +50,14 @@
 	src="https://s3.amazonaws.com/assignment2-jwplayer/jwplayer/jwplayer.js">
 	</script>
 <script type="text/javascript">jwplayer.key="IFhVDTGUAS2rMT6B2r9dmwEzCZv17bBbXti9RA==";</script>
+<script type="text/javascript">
+	function play(){
+		alert("here!");
+		jwplayer().play();
+	}
+	</script>
 </head>
 <body>
-<div id="myplayer">Loading the player ...</div>
-
-		<script type="text/javascript">
-		jwplayer('myplayer').setup({
-		 
-		                file: "rtmp://s3fzodeyzk00fl.cloudfront.net/cfx/st/test.mp4",
-		                title: "run!!",
-		                height:300,		
-		                width:450,		
-		                allowfullscreen: true,			
-		               modes: [{type: "flash", src:"https://s3.amazonaws.com/assignment2-jwplayer/jwplayer/jwplayer.flash.swf"},	 
-		                 {type: "html5", config:{file:"http://dyiqwq9e0df2f.cloudfront.net/test.mp4",title: "Welcome",provider:"video"}} ], 	
-		              
-		                provider: "rtmp",		
-		                streamer: "rtmp://s3fzodeyzk00fl.cloudfront.net/cfx/st",
-		            	autostart: false
-		                           }); 
-		</script>
 <h3>Video Upload:</h3>
 Select a file to upload: <br />
 <form action="UploadFileServlet" method="post"
@@ -94,15 +82,15 @@ Select a file to upload: <br />
 			%>
 
 			<tr>
-
+			<td><form action="PlayFileServlet" method="get"
+						enctype="multipart/">
 				<% if(videos.get(i1).contains(".mp4") || videos.get(i1).contains(".flv"))%>
-				<td>
-					<p>
-						<b><font face="Calibri" size="5" ><%=videos.get(i1)  %></font></b></p>
-				</td>
-				<td>
-				<button onclick="jwplayer().play()" height="42" width="42"> <img style="border:0px;" src="http://cdn.pastemagazine.com/www/articles/play-button-red-300x300.png" height="42" width="42" alt="Play" /></button></td>
-
+					<p><b><font face="Calibri" size="5" ><%=videos.get(i1)  %></font></b></p>
+				<input type="submit"  value="play"/>
+				<input type="hidden" name = "name" value=<%= videos.get(i1).replaceAll(" ", "_")%>>
+				</form>
+			</td>
+		
 				<td><form action="DeleteFileServlet" method="post"
 						enctype="multipart/">
 						<input type="hidden" name="videoName"

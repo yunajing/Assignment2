@@ -30,8 +30,9 @@ public class PlayFileServlet extends HttpServlet {
 		//AmazonS3Manager s3=new AmazonS3Manager();
 		String name=(String)request.getParameter("name");
 		System.out.println(name);
-		request.setAttribute("name",name);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("player.jsp"); 
+		String url = "rtmp://s3fzodeyzk00fl.cloudfront.net/cfx/st/";
+		request.setAttribute("name",url);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp"); 
 		dispatcher.forward(request, response);
 	}
 

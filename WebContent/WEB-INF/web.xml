@@ -39,4 +39,14 @@
     <servlet-name>RateFileServlet</servlet-name>
     <url-pattern>/RateFileServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PlayFileServlet</display-name>
+    <servlet-name>PlayFileServlet</servlet-name>
+    <servlet-class>PlayFileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PlayFileServlet</servlet-name>
+    <url-pattern>/PlayFileServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

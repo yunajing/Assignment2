@@ -31,7 +31,7 @@ public class PlayFileServlet extends HttpServlet {
 		String name=(String)request.getParameter("name");
 		System.out.println(name);
 		request.setAttribute("name",name);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp"); 
+		RequestDispatcher dispatcher = request.getRequestDispatcher("player.jsp"); 
 		dispatcher.forward(request, response);
 	}
 

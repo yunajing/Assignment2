@@ -86,29 +86,28 @@ Select a file to upload: <br />
 						enctype="multipart/">
 				<% if(videos.get(i1).contains(".mp4") || videos.get(i1).contains(".flv"))%>
 					<p><b><font face="Calibri" size="5" ><%=videos.get(i1)  %></font></b></p>
-				<input type="submit"  value="play"/>
+				<input type="image"  src="http://cdn.pastemagazine.com/www/articles/play-button-red-300x300.png" width="42" height="42" value="play"/>
 				<input type="hidden" name = "name" value=<%= videos.get(i1).replaceAll(" ", "_")%>>
 				</form>
 			</td>
 		
-				<td><form action="DeleteFileServlet" method="post"
+			<td><form action="DeleteFileServlet" method="post"
 						enctype="multipart/">
 						<input type="hidden" name="videoName"
 							value=<%= videos.get(i1).replaceAll(" ", "_") %>>
 							<input
 							type="image" src="http://etc-mysitemyway.s3.amazonaws.com/icons/legacy-previews/icons/simple-red-square-icons-business/128745-simple-red-square-icon-business-trashcan.png" height="42" width="42" name="Delete" value="Submit">
-					</form></td>
-
-				<td><p>
+			</form>
+			</td>
+			<td><p>
 						&nbsp;&nbsp;
 						Current Rating: <%=rds.getObjectRating(videos.get(i1))%>
 						&nbsp;
-					</p></td>
-
-				<td><form action="RateFileServlet" method="post"
+			</p></td>
+			<td><form action="RateFileServlet" method="post"
 						enctype="multipart/">
 						<input type="hidden" name="rateVideoName"
-							value=<%= videos.get(i1).replaceAll(" ", "_") %>> </td>
+							value=<%= videos.get(i1).replaceAll(" ", "_") %>>
 						<tr><td>Select Rating	<input type = "radio"
 							name="rating" value ="1" onchange="this.form.submit()"/>1
 							<input type = "radio"
@@ -119,10 +118,7 @@ Select a file to upload: <br />
 							name="rating" value ="4" onchange="this.form.submit()"/>4
 							<input type = "radio"
 							name="rating" value ="5" onchange="this.form.submit()"/>5
-							
-						</td>
-						
-					</form>
+			</form></td>
 				
 				<% }
 				} %>

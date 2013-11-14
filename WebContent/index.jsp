@@ -58,6 +58,7 @@
 	</script>
 </head>
 <body>
+<h3><span style="background-color:#FCDC3B; color:#EE0000">${requestScope.message}</span></h3>
 <h3>Video Upload:</h3>
 Select a file to upload: <br />
 <form action="UploadFileServlet" method="post"

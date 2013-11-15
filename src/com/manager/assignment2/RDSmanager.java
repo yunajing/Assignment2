@@ -7,6 +7,12 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 
+import com.amazonaws.services.cloudfront.AmazonCloudFrontClient;
+import com.amazonaws.services.cloudfront.model.CreateDistributionRequest;
+import com.amazonaws.services.cloudfront.model.DistributionConfig;
+import com.amazonaws.services.cloudfront.model.DistributionList;
+import com.amazonaws.services.cloudfront.model.Origins;
+
 public class RDSmanager {
 	String dbName;
 	String userName;
@@ -63,7 +69,7 @@ public class RDSmanager {
 	public LinkedList<String> getVideo() {
 		try {
 			
-			String queryToSelectInOrder = "select DISTINCT vName from VIDEOINFO order by rating desc";
+			String queryToSelectInOrder = "select DISTINCT vName, uploadtime from VIDEOINFO order by rating desc";
 			if (connection != null) {
 				PreparedStatement preparedStatement = connection.prepareStatement(queryToSelectInOrder);
 				ResultSet resultVideoSet = preparedStatement.executeQuery();
@@ -71,11 +77,35 @@ public class RDSmanager {
 
 				while (resultVideoSet.next()) {
 					videos.add(resultVideoSet.getString(1));
-					
-
 				}
 
 				return videos;
+			}
+			return null;
+		} catch (SQLException e) {
+			System.out.println("Error occurs when getting video information "
+					+ e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+	
+	public LinkedList<String> getTime() {
+		try {
+			
+			String queryToSelectInOrder = "select DISTINCT vName, uploadtime from VIDEOINFO order by rating desc";
+			if (connection != null) {
+				PreparedStatement preparedStatement = connection.prepareStatement(queryToSelectInOrder);
+				ResultSet resultVideoSet = preparedStatement.executeQuery();
+				LinkedList<String> times = new LinkedList<String>();
+
+				while (resultVideoSet.next()) {
+					String str = ""+resultVideoSet.getTimestamp(2);
+					times.add(str);
+				}
+
+				return times;
 			}
 			return null;
 		} catch (SQLException e) {
@@ -165,5 +195,17 @@ public class RDSmanager {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	public void createCloudFront(){
+		AmazonCloudFrontClient cloudfront = new AmazonCloudFrontClient();
+
+		// Create a new CloudFront Distribution
+		DistributionList dl=new DistributionList();
+		DistributionConfig df=new DistributionConfig();
+		df.withOrigins(new Origins());
+		CreateDistributionRequest rq=new CreateDistributionRequest(df);
+		cloudfront.createDistribution(rq);
+		// List existing CloudFront Distributions
+		System.out.println("Distributions: " + cloudfront.listDistributions(null));
 	}
 }

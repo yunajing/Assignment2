@@ -39,6 +39,7 @@
 %>
 
 <!DOCTYPE html>
+<<<<<<< HEAD
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         ml class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -83,6 +84,30 @@
         <h3>Video Upload:</h3>
         Select a file to upload: <br />
         <form action="UploadFileServlet" method="post"
+=======
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<title>MyTube</title>
+<link rel="stylesheet" href="styles/styles.css" type="text/css"
+	media="screen">
+<script type="text/javascript"
+	src="https://s3.amazonaws.com/assignment2-jwplayer/jwplayer/jwplayer.js">
+	</script>
+<script type="text/javascript">jwplayer.key="IFhVDTGUAS2rMT6B2r9dmwEzCZv17bBbXti9RA==";</script>
+<script type="text/javascript">
+	function play(){
+		alert("here!");
+		jwplayer().play();
+	}
+	</script>
+</head>
+<body>
+<h3><span style="background-color:#FCDC3B; color:#EE0000">${requestScope.message}</span></h3>
+<h3>Video Upload:</h3>
+Select a file to upload: <br />
+<form action="UploadFileServlet" method="post"
+>>>>>>> 17ecab78ef5ac82617ed918a6ad0db735921f889
                         enctype="multipart/form-data">
           <input type="file" name="file" size="50" />
           <input type="submit" value="Upload File" height="42"/>

@@ -63,7 +63,7 @@ public class RDSmanager {
 	public LinkedList<String> getVideo() {
 		try {
 			
-			String queryToSelectInOrder = "select DISTINCT vName from VIDEOINFO order by rating desc";
+			String queryToSelectInOrder = "select DISTINCT vName, uploadtime from VIDEOINFO order by rating desc";
 			if (connection != null) {
 				PreparedStatement preparedStatement = connection.prepareStatement(queryToSelectInOrder);
 				ResultSet resultVideoSet = preparedStatement.executeQuery();
@@ -71,11 +71,35 @@ public class RDSmanager {
 
 				while (resultVideoSet.next()) {
 					videos.add(resultVideoSet.getString(1));
-					
-
 				}
 
 				return videos;
+			}
+			return null;
+		} catch (SQLException e) {
+			System.out.println("Error occurs when getting video information "
+					+ e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+	
+	public LinkedList<String> getTime() {
+		try {
+			
+			String queryToSelectInOrder = "select DISTINCT vName, uploadtime from VIDEOINFO order by rating desc";
+			if (connection != null) {
+				PreparedStatement preparedStatement = connection.prepareStatement(queryToSelectInOrder);
+				ResultSet resultVideoSet = preparedStatement.executeQuery();
+				LinkedList<String> times = new LinkedList<String>();
+
+				while (resultVideoSet.next()) {
+					String str = ""+resultVideoSet.getTimestamp(2);
+					times.add(str);
+				}
+
+				return times;
 			}
 			return null;
 		} catch (SQLException e) {
